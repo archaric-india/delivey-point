@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/fiftyPerOffersCardView"
+    android:elevation="10dp"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="3dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="280dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:background="@color/line"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:id="@+id/fiftyPerOffersIV"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp">
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_alignParentStart="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:background="@color/line"
+                        android:fontFamily="@font/sf_medium"
+                        android:textColor="@color/line"
+                        android:textSize="16sp"
+                        android:layout_marginStart="15dp"
+                        android:id="@+id/itemNameOfFiftyPerOffers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cake Lake"/>
+
+
+                    <TextView
+                        android:background="@color/line"
+                        android:textColor="@color/line"
+                        android:layout_marginTop="5dp"
+                        android:textSize="13sp"
+                        android:layout_marginStart="15dp"
+                        android:id="@+id/categoryOfFiftyPerOffers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CategotyName"/>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_marginEnd="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:layout_centerVertical="true"
+                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    android:drawableTint="@color/line"
+                    android:textSize="15sp"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/line"
+                    android:text="Order Now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"/>
+
+
+
+            </RelativeLayout>
+
+
+
+            <LinearLayout
+                android:layout_marginStart="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RatingBar
+                    android:translationX="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="-120dp"
+                    android:theme="@style/RatingBar"
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:scaleX=".5"
+                    android:scaleY=".5"
+                    android:transformPivotX="0dp"
+                    android:transformPivotY="15sp" />
+
+                <TextView
+                    android:background="@color/line"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/totalNumOfReview"
+                    android:textColor="@color/line"
+                    android:layout_gravity="top"
+                    android:textSize="15sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(24)"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/dis"
+            android:layout_marginTop="214dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:backgroundTint="@color/line"
+                android:background="@drawable/ic_scooter"
+                android:layout_marginStart="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"/>
+
+            <TextView
+                android:background="@color/line"
+                android:textColor="@color/line"
+                android:id="@+id/estimatedDeliveryTime"
+                android:paddingEnd="0dp"
+                android:paddingStart="5dp"
+                android:layout_gravity="center"
+                android:textSize="13sp"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20-30mins"/>
+
+            <TextView
+                android:background="@color/line"
+                android:textColor="@color/line"
+                android:gravity="center"
+                android:id="@+id/priceFiftyPerOff"
+                android:paddingEnd="0dp"
+                android:paddingStart="5dp"
+                android:layout_gravity="center"
+                android:textSize="12sp"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery: KD 55.500"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/dis"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:backgroundTint="@color/line"
+                android:background="@drawable/ic_coupons"
+                android:layout_marginStart="15dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:background="@color/line"
+                android:id="@+id/offerPercentage"
+                android:textColor="@color/line"
+                android:paddingEnd="0dp"
+                android:paddingStart="5dp"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="40% OFF"/>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>
