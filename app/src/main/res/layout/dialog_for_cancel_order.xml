@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+        <LinearLayout
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order is Out For Delivery \n Not able to cancel"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/ic_sad_1"/>
+
+            <TextView
+                android:id="@+id/closeWindow"
+                android:fontFamily="@font/sf_semibold"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:focusable="true"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/white"
+                android:background="@drawable/button_background"
+                android:gravity="center"
+                android:text="Close"
+                android:layout_gravity="center"
+                android:layout_width="250dp"
+                android:layout_height="50dp"/>
+
+
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>

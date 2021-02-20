@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    tools:context=".OrderHistory.OrderHistory">
+
+    <LinearLayout
+        android:id="@+id/topLayout"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textSize="18sp"
+                android:fontFamily="@font/sf_medium"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_cart"/>
+
+            <TextView
+                android:id="@+id/cartCount"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/sf_medium"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+
+
+        </LinearLayout>
+
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/purple"
+            android:layout_alignParentBottom="true"/>
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_below="@+id/topLayout"
+        android:layout_above="@+id/totalLayout"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                <LinearLayout
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:id="@+id/addressLayout"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:fontFamily="@font/sf_semibold"
+
+                            android:textSize="24sp"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/deliver_to"/>
+
+                        <TextView
+                            android:id="@+id/cusName"
+                            android:fontFamily="@font/sf_medium"
+                            android:layout_marginTop="5dp"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Suabsh"/>
+
+                        <TextView
+                            android:id="@+id/deliveryTo"
+                            android:layout_marginTop="5dp"
+                            android:textSize="15sp"
+                            android:textColor="@color/light_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""/>
+
+                        <TextView
+                            android:id="@+id/buildingNoAndName"
+                            android:layout_marginTop="5dp"
+                            android:textSize="15sp"
+                            android:textColor="@color/light_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""/>
+
+                        <TextView
+                            android:id="@+id/roomNoAndBlockAndCity"
+                            android:layout_marginTop="5dp"
+                            android:textSize="15sp"
+                            android:textColor="@color/light_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""/>
+
+                        <TextView
+                            android:id="@+id/cusArea"
+                            android:layout_marginTop="5dp"
+                            android:textSize="15sp"
+                            android:textColor="@color/light_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""/>
+
+                        <TextView
+                            android:id="@+id/mobileAndLane"
+                            android:layout_marginTop="5dp"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/sf_medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="9361109307"/>
+                        <TextView
+                            android:fontFamily="@font/sf_medium"
+                            android:id="@+id/changeAddress"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="@drawable/flat_ripple_transparent"
+                            android:gravity="center"
+                            android:background="@drawable/rounded_bg"
+                            android:layout_marginTop="16dp"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="@string/change_address"/>
+                    </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:visibility="gone"
+                android:id="@+id/shimmer_layout">
+
+                <LinearLayout
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Delivered to"/>
+
+                        <TextView
+                            android:background="@color/line"
+                            android:layout_marginTop="5dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="             "/>
+
+                        <TextView
+                            android:background="@color/line"
+                            android:layout_marginTop="5dp"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="                  "/>
+
+                        <TextView
+                            android:background="@color/line"
+                            android:layout_marginTop="5dp"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="                      "/>
+
+                        <TextView
+                            android:background="@color/line"
+                            android:layout_marginTop="5dp"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="                              "/>
+
+                        <TextView
+                            android:background="@color/line"
+                            android:layout_marginTop="5dp"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="      "/>
+
+                        <TextView
+                            android:background="@color/line"
+                            android:layout_marginTop="5dp"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="                  "/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:background="@color/line"
+                            android:layout_marginTop="10dp"
+                            android:textSize="20sp"
+                            android:textColor="@color/black"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:text="Change"/>
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+            <View
+                android:id="@+id/viewLineSep"
+                android:layout_below="@+id/addressLayout"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_below="@+id/viewLineSep"
+                android:visibility="visible"
+                tools:itemCount="10"
+                android:overScrollMode="never"
+                tools:listitem="@layout/cart_view"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:id="@+id/cartListRec"/>
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/totalLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line"/>
+
+        <LinearLayout
+            android:layout_margin="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:id="@+id/totalCartAmount"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total KD 23.0125"/>
+
+
+            <TextView
+                android:visibility="visible"
+                android:id="@+id/placeOrder"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:background="@drawable/button_background"
+                android:layout_width="225dp"
+                android:layout_height="50dp"
+                android:text="Place Order"/>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:visibility="gone"
+        android:translationZ="16dp"
+        android:id="@+id/addressChanger"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"/>
+
+    <androidx.cardview.widget.CardView
+        android:visibility="gone"
+        android:id="@+id/noDataFoundLayout"
+        android:layout_below="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+
+            <TextView
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No items in your cart"/>
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:visibility="gone"
+        android:layout_below="@+id/topLayout"
+        android:id="@+id/noInternetFoundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:backgroundTint="@color/line"
+                android:background="@drawable/ic_outline_wifi_off_24"
+                android:layout_gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="150dp"/>
+
+            <TextView
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Internet Connection"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your internet connection is currently \n not available please check or try again."/>
+
+
+            <TextView
+                android:id="@+id/backToHomePageFromOrderHistory"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textColor="@color/white"
+                android:padding="15sp"
+                android:background="@drawable/button_background"
+                android:layout_marginTop="50dp"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="275dp"
+                android:layout_height="wrap_content"
+                android:text="Try Again"/>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

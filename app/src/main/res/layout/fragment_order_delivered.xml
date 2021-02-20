@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/Theme.AppCompat.StatusBar_TransParent"
+    android:fitsSystemWindows="true"
+    android:layout_marginBottom="40dp"
+    android:orientation="vertical"
+    tools:context=".IndividualRestaurant.IndividualRestaurantRating">
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/titleWithBackBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:padding="18dp">
+
+            <LinearLayout
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/backToHomePageOnTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                tools:ignore="UnusedAttribute,UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="-6dp"
+                    android:src="@drawable/ic_arrow_back_blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="start"
+                    android:text="Back"
+                    android:textColor="@color/Blue"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/resNameTop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Number"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="#25987452"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ORDER STATUS"/>
+
+            <TextView
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/holo_green_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivered"/>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_alignParentEnd="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_delivery_boy"/>
+
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/line"/>
+
+   <ScrollView
+       android:scrollbars="none"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <LinearLayout
+           android:layout_marginBottom="40dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+           <LinearLayout
+               android:padding="20dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+               <TextView
+                   android:textSize="15sp"
+                   android:textStyle="bold"
+                   android:textColor="@color/black"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Order Details"/>
+
+               <RelativeLayout
+                   android:layout_marginTop="5dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+
+                   <LinearLayout
+                       android:layout_alignParentStart="true"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:orientation="vertical">
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Order Number #5454510"/>
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Order Date : 04/02/2021"/>
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_alignParentEnd="true"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:orientation="vertical">
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Delivery Fee : FREE"/>
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Total Amount : KD 12.000"/>
+                   </LinearLayout>
+
+
+
+               </RelativeLayout>
+
+               <LinearLayout
+                   android:layout_marginTop="10dp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:textSize="15sp"
+                       android:textStyle="bold"
+                       android:textColor="@color/black"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Payment Method"/>
+                   <TextView
+                       android:layout_marginTop="5dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Cash on Delivery (COD)"/>
+
+
+
+               </LinearLayout>
+
+
+
+           </LinearLayout>
+
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="2dp"
+               android:background="@color/line"/>
+
+           <LinearLayout
+               android:padding="20dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+
+               <TextView
+                   android:textSize="15sp"
+                   android:textStyle="bold"
+                   android:textColor="@color/black"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Your Address"/>
+
+               <LinearLayout
+                   android:layout_marginTop="10dp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+
+                   <ImageView
+                       android:layout_gravity="center"
+                       android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:background="@drawable/ic_outline_location_on_24"
+                       android:backgroundTint="@color/black"/>
+
+                   <LinearLayout
+                       android:layout_gravity="center"
+                       android:layout_marginStart="20dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:orientation="vertical">
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Block 1, Street 3, Kuwait City,"/>
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Kuwait."/>
+
+
+
+                   </LinearLayout>
+
+
+               </LinearLayout>
+
+
+           </LinearLayout>
+
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="2dp"
+               android:background="@color/line"/>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <LinearLayout
+                   android:layout_alignParentStart="true"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:padding="20dp"
+                       android:textSize="15sp"
+                       android:textStyle="bold"
+                       android:textColor="@color/black"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Order Items"/>
+
+                   <androidx.recyclerview.widget.RecyclerView
+                       tools:itemCount="2"
+                       tools:listitem="@layout/item_in_delivery_view"
+                       android:layout_marginTop="10dp"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"/>
+
+
+                   <LinearLayout
+                       android:id="@+id/writeAReview"
+                       android:clickable="true"
+                       android:focusable="true"
+                       android:foreground="?android:attr/selectableItemBackground"
+                       android:layout_marginTop="20dp"
+                       android:padding="15dp"
+                       android:gravity="center"
+                       android:layout_gravity="center"
+                       android:background="@drawable/button_background"
+                       android:layout_width="250dp"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal">
+
+                       <TextView
+                           android:gravity="center"
+                           android:layout_gravity="center"
+                           android:textSize="15sp"
+                           android:textColor="@color/white"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="Write a Review"/>
+
+                       <ImageView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:background="@drawable/ic_arrow_next"
+                           android:layout_gravity="center"/>
+
+
+                   </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+               </LinearLayout>
+
+           </RelativeLayout>
+
+
+
+       </LinearLayout>
+
+
+   </ScrollView>
+
+
+
+
+
+</LinearLayout>

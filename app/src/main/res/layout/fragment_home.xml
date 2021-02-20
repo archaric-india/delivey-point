@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".ui.home.HomeFragment">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:lines="1"
+            android:layout_marginVertical="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
+            android:id="@+id/search_bar"
+            android:hint="@string/search"
+            android:drawablePadding="12dp"
+            android:maxLines="1"
+            android:textSize="15sp"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:drawableStart="@drawable/ic_search_new"
+            android:background="@drawable/bg_search_box"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"/>
+
+
+        <ImageView
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/flat_ripple_transparent"
+            android:backgroundTint="@color/black"
+            android:layout_margin="10dp"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="12dp"
+            android:layout_toEndOf="@+id/search_bar"
+            android:id="@+id/filter_btn"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_filter_list_24"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/divider"
+        android:background="@color/line"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_alignParentTop="true"
+        android:id="@+id/mainContentLayout"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+
+                <RelativeLayout
+                    android:layout_marginTop="12dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+
+                        android:fontFamily="@font/sf_semibold"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/black"
+                        android:text="@string/all_categories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+
+                    <TextView
+
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                        android:drawableTint="@color/Blue"
+                        android:textSize="15sp"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/Blue"
+                        android:text="@string/view_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:layout_marginTop="5dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:id="@+id/allCategoriesContent"/>
+
+
+                <RelativeLayout
+                    android:layout_marginTop="3dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:fontFamily="@font/sf_semibold"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/black"
+                        android:text="@string/my_orders"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+
+                    <TextView
+                        android:id="@+id/viewAllOrderHistory"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                        android:drawableTint="@color/Blue"
+                        android:textSize="15sp"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/Blue"
+                        android:text="@string/view_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+                </RelativeLayout>
+
+                <FrameLayout
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/myOrders"/>
+
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:fontFamily="@font/sf_semibold"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/black"
+                        android:text="@string/special_offers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+
+                    <TextView
+                        android:id="@+id/viewAllSpecialOffers"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                        android:drawableTint="@color/Blue"
+                        android:textSize="15sp"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/Blue"
+                        android:text="@string/view_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:layout_marginTop="5dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:layout_width="match_parent"
+                    android:layout_height="175dp"
+                    android:id="@+id/specialOffers"/>
+
+                <RelativeLayout
+                    android:layout_marginTop="3dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:fontFamily="@font/sf_semibold"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/black"
+                        android:text="@string/upto_50_offers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+
+                    <TextView
+                        android:id="@+id/viewAllFiftyPerOff"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="15sp"
+                        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                        android:drawableTint="@color/Blue"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/Blue"
+                        android:text="@string/view_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:layout_marginTop="5dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:id="@+id/fiftyPerOffers"/>
+
+
+                <RelativeLayout
+                    android:layout_marginTop="6dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:fontFamily="@font/sf_semibold"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/black"
+                        android:text="@string/restaurants_around_you"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+
+                    <TextView
+                        android:id="@+id/viewAllResAroundYou"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                        android:drawableTint="@color/Blue"
+                        android:textSize="15sp"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/Blue"
+                        android:text="@string/view_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:layout_marginTop="5dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    android:id="@+id/restaurants_around_you"/>
+
+
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:fontFamily="@font/sf_semibold"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/black"
+                        android:text="@string/newly_joined"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+
+                    <TextView
+                        android:id="@+id/viewAllNewlyJoined"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="5dp"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                        android:drawableTint="@color/Blue"
+                        android:textSize="15sp"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/Blue"
+                        android:text="@string/view_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:layout_marginTop="5dp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:layout_width="match_parent"
+                    android:layout_height="270dp"
+                    android:id="@+id/newly_joined"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:id="@+id/noDataFoundLayout"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:backgroundTint="@color/line"
+            android:background="@drawable/ic_outline_wifi_off_24"
+            android:layout_gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
+
+        <TextView
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Internet Connection"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your internet connection is currently \n not available please check or try again."/>
+
+
+        <TextView
+            android:id="@+id/tryAgain"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:textColor="@color/white"
+            android:padding="15sp"
+            android:background="@drawable/button_background"
+            android:layout_marginTop="50dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:text="Try Again"/>
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:translationZ="16dp"
+        android:visibility="gone"
+        android:layout_marginTop="80dp"
+        android:layout_alignParentTop="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/searchOnHome"/>
+
+</LinearLayout>

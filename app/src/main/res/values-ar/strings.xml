@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">نقطة التسليم</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">الإعدادات</string>
+
+    <string name="menu_home">الصفحة الرئيسية</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="offers">عروض</string>
+    <string name="share_app">شارك التطبيق</string>
+    <string name="contact_us">اتصل بنا</string>
+    <string name="logout">تسجيل خروج</string>
+    <string name="cart">عربة التسوق</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_categories">جميع الفئات</string>
+    <string name="back">خلف</string>
+    <string name="type_here">أكتب هنا...</string>
+    <string name="add_a_photos">أضف صور</string>
+    <string name="customer_support">دعم العملاء</string>
+    <string name="submit">يقدم</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="password_reset">إعادة تعيين كلمة المرور</string>
+    <string name="forgot_password">هل نسيت كلمة السر؟</string>
+    <string name="email">بريد الالكتروني</string>
+    <string name="back_to_login">العودة إلى تسجيل الدخول</string>
+    <string name="order_history">تاريخ الطلب</string>
+    <string name="my_orders">طلباتي</string>
+    <string name="special_offers">عروض خاصة</string>
+    <string name="upto_50_offers">🎉عروض تصل إلى 50٪</string>
+    <string name="restaurants_around_you">المطاعم من حولك</string>
+    <string name="view_all">مشاهدة الكل</string>
+    <string name="newly_joined">انضم حديثا</string>
+    <string name="search">بحث</string>
+    <string name="credit_points">نقاط الائتمان</string>
+
+</resources>

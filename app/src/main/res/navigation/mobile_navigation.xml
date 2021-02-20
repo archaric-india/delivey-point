@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.archaric.deliverypoint.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_order_history"
+        android:name="com.archaric.deliverypoint.OrderHistory.OrderHistory"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_order_history" />
+
+    <fragment
+        android:id="@+id/nav_offers"
+        android:name="com.archaric.deliverypoint.ui.Offers.Offers"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_offers" />
+
+    <fragment
+        android:id="@+id/nav_noInternet"
+        android:name="com.archaric.deliverypoint.Fragments.NoInternetConnection"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_no_internet_connection" />
+
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.archaric.deliverypoint.OrderHistory.MyCart"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_my_cart" />
+
+    <fragment
+        android:id="@+id/nav_place_order"
+        android:name="com.archaric.deliverypoint.OrderHistory.PlaceOrder"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_place_order" />
+
+    <fragment
+        android:id="@+id/nav_fifty_off_large"
+        android:name="com.archaric.deliverypoint.Fragments.FiftyPerOffLarge"
+        android:label="@string/offers"
+        tools:layout="@layout/fragment_fifty_per_off_large" />
+
+    <fragment
+        android:id="@+id/nav_res_around_you_large"
+        android:name="com.archaric.deliverypoint.Fragments.RestaurantsAroundYouLarge"
+        android:label="@string/offers"
+        tools:layout="@layout/fragment_restaurants_around_you_large" />
+
+    <fragment
+        android:id="@+id/nav_newly_joined_large"
+        android:name="com.archaric.deliverypoint.Fragments.NewlyJoinedLarge"
+        android:label="@string/offers"
+        tools:layout="@layout/fragment_newly_joined_large" />
+
+
+
+
+</navigation>

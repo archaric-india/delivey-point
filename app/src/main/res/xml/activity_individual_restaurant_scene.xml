@@ -1,0 +1,16 @@
+<MotionScene
+    xmlns:motion="https://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@layout/activity_individual_restaurant_start"
+        motion:constraintSetEnd="@layout/activity_individual_restaurant_end"
+        motion:duration="1000">
+
+        <OnSwipe
+            motion:touchAnchorId="@id/categoriesContentRecyclerView"
+            motion:touchAnchorSide="top"
+            motion:dragDirection="dragUp"/>
+
+    </Transition>
+
+</MotionScene>
