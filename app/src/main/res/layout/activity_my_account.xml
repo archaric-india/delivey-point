@@ -170,7 +170,7 @@
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Raghul T"/>
+            android:text=""/>
 
 
         <EditText
@@ -180,8 +180,7 @@
             android:textSize="15sp"
             android:textColor="@color/black"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Raghul T"/>
+            android:layout_height="wrap_content"/>
 
 
 
@@ -217,7 +216,7 @@
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="7896541230"/>
+            android:text=""/>
 
         <EditText
             android:visibility="gone"
@@ -226,8 +225,7 @@
             android:textSize="15sp"
             android:textColor="@color/black"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="7896541230"/>
+            android:layout_height="wrap_content" />
 
 
 
@@ -261,7 +259,7 @@
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="raghulThavamani@gmail.com"/>
+            android:text=""/>
 
         <EditText
             android:background="@android:color/transparent"
@@ -270,8 +268,7 @@
             android:textSize="15sp"
             android:textColor="@color/black"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="raghulThavamani@gmail.com"/>
+            android:layout_height="wrap_content" />
 
 
 

@@ -39,9 +39,6 @@ public interface EndPoint {
     @GET("getrestuarantaroundyou")
     Call<List<FiftyPercentOfferModel>> getResAroundYou(@Query("lat") double lat, @Query("lng") double lng, @Query("zoneid") String zoneid);
 
-    @GET("getsearchresuser")
-    Call<List<FiftyPercentOfferModel>> searchHome(@Query("key") String key, @Query("zoneid") String zoneid);
-
     @GET("getnewlyjoinedres")
     Call<List<FiftyPercentOfferModel>> getNewlyJoined(@Query("zoneid") String zoneid);
 

@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.archaric.deliverypoint.EndPoint;
@@ -29,6 +30,7 @@ import com.archaric.deliverypoint.LoginSignUp.UserModel;
 import com.archaric.deliverypoint.OrderHistory.OrdersModel;
 import com.archaric.deliverypoint.R;
 import com.archaric.deliverypoint.Utils;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +54,8 @@ public class MyAddresses extends Fragment  {
     TextView addAddress;
     RecyclerView getAddressRec;
     AddressesAdapter addressesAdapter;
+    ShimmerFrameLayout shimmer_layout;
+    RelativeLayout addressNotFoundLayout;
 
 
 
@@ -72,6 +76,8 @@ public class MyAddresses extends Fragment  {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_addresses, container, false);
 
+        addressNotFoundLayout   = view.findViewById(R.id.addressNotFoundLayout);
+        shimmer_layout  = view.findViewById(R.id.shimmer_layout);
         backToHomePageOnTitle = view.findViewById(R.id.backToHomePageOnTitle);
         addAddress = view.findViewById(R.id.addAddress);
         getAddressRec =  view.findViewById(R.id.getAddressRec);
@@ -89,15 +95,29 @@ public class MyAddresses extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
 
 
-        getData();
+        if (Utils.userData(getActivity()) != null) {
+            if (Utils.userData(getActivity()).getId() != null) {
+               getData();
+            }
+        }
+
 
 
         addAddress.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(),AddNewAddress.class);
-            intent.putExtra("AddAddress","Add a New Address");
-            startActivity(intent);
+            if (Utils.userData(getActivity()) != null) {
+                if (Utils.userData(getActivity()).getId() != null) {
+                    Intent intent = new Intent(getActivity(),AddNewAddress.class);
+                    intent.putExtra("AddAddress","Add a New Address");
+                    startActivity(intent);
+                }
+            }else {
+                Utils.toast(getActivity(),"Login Required!");
+            }
+
 
         });
+
+
 
 
 
@@ -123,39 +143,10 @@ public class MyAddresses extends Fragment  {
 
 
 
-//    @Override
-//    public boolean onMenuItemClick(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.edit:
-//
-//                Intent intent = new Intent(getActivity(),AddNewAddress.class);
-//                intent.putExtra("AddAddress","Edit Address");
-//                startActivity(intent);
-//
-//                return true;
-//            case R.id.remove:
-//
-//                DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
-//                    switch (which){
-//                        case DialogInterface.BUTTON_POSITIVE:
-//                            dialog.dismiss();
-//                            break;
-//
-//                        case DialogInterface.BUTTON_NEGATIVE:
-//                            dialog.dismiss();
-//                            break;
-//                    }
-//                };
-//
-//                android.app.AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//                builder.setMessage("Are you sure you want to remove this address?").setPositiveButton("Yes", dialogClickListener)
-//                        .setNegativeButton("No", dialogClickListener).show();
-//
-//                return true;
-//            default:
-//                return false;
-//        }
-//    }
+
+
+
+
 
     private void getData(){
         Retrofit retrofit = new Retrofit.Builder()
@@ -170,10 +161,18 @@ public class MyAddresses extends Fragment  {
                 public void onResponse(Call<List<OrdersModel>> call, Response<List<OrdersModel>> response) {
                     ArrayList<OrdersModel> ordersModels = (ArrayList<OrdersModel>) response.body();
                     if (response.isSuccessful()){
-                        if (ordersModels != null) {
+                        if (ordersModels.size() != 0) {
+                            getAddressRec.setVisibility(View.VISIBLE);
+                            shimmer_layout.stopShimmer();
+                            shimmer_layout.setVisibility(View.GONE);
                             addressesAdapter.setOrdersModelArrayList(ordersModels);
                             getAddressRec.setAdapter(addressesAdapter);
                             addressesAdapter.notifyDataSetChanged();
+                        }else  {
+                            addressNotFoundLayout.setVisibility(View.VISIBLE);
+                            getAddressRec.setVisibility(View.GONE);
+                            shimmer_layout.stopShimmer();
+                            shimmer_layout.setVisibility(View.GONE);
                         }
                     }
                 }

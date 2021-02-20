@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.cardview.widget.CardView
+    android:layout_marginBottom="-25dp"
+    app:cardCornerRadius="25dp"
     android:id="@+id/searchLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +11,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_gravity="center"
@@ -20,21 +22,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Search"
-
                 android:textColor="@color/black"
-                android:paddingVertical="20dp"
-                android:paddingHorizontal="12dp"
-                android:textSize="18sp"
-                android:fontFamily="@font/sf_semibold"/>
+                android:padding="20dp"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
             <ImageView
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="@drawable/flat_ripple_transparent"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/buttonCloseSearch"
-                android:padding="12dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/ic_baseline_close_24"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"/>
@@ -42,55 +42,32 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:paddingStart="12dp"
-            android:layout_marginHorizontal="12dp"
-            android:orientation="horizontal"
+        <EditText
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:id="@+id/search_bar"
+            android:hint="Search within the restaurant"
+            android:drawablePadding="12dp"
+            android:focusedByDefault="false"
+            android:maxLines="1"
+            android:textSize="15sp"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:drawableStart="@drawable/ic_baseline_search_24"
             android:background="@drawable/bg_search_box"
             android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="40dp">
+            android:layout_height="40dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recSearch"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 
-
-            <EditText
-
-                android:layout_toEndOf="@+id/close_search"
-                android:lines="1"
-                android:layout_centerVertical="true"
-                android:id="@+id/search_bar"
-                android:hint="@string/search_with_the_restaurant"
-                android:layout_weight="1"
-                android:drawablePadding="8dp"
-                android:maxLines="1"
-                android:textSize="15sp"
-                android:inputType="text"
-                android:imeOptions="actionSearch"
-                android:drawableStart="@drawable/ic_search_new"
-                android:background="@android:color/transparent"
-                android:layout_width="0dp"
-                android:layout_height="40dp"/>
-            <ImageView
-                android:visibility="gone"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="@drawable/circle"
-                android:padding="4dp"
-                android:layout_marginEnd="10dp"
-                android:foreground="@drawable/flat_ripple_transparent"
-                android:backgroundTint="#40000000"
-                android:id="@+id/close_search"
-                android:layout_centerVertical="true"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_baseline_close_24"
-                app:tint="@color/white" />
-        </LinearLayout>
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recSearch"
-        android:layout_marginTop="110dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.cardview.widget.CardView>

@@ -236,6 +236,7 @@
 
 
             <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchNotification"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"

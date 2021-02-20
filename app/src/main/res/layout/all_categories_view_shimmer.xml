@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="10dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/categoryOfAllLayouts"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         app:cardElevation="2dp"
         android:id="@+id/card"
         app:cardCornerRadius="50dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:background="@color/line"
             android:scaleType="centerCrop"
             android:id="@+id/imageOfCategory"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"/>
 
     </androidx.cardview.widget.CardView>
 
+
     <TextView
+        android:layout_marginTop="8dp"
         android:background="@color/line"
+        android:layout_gravity="center"
         android:id="@+id/categoryName"
-        android:layout_marginTop="5dp"
-        android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:text="                 "
-        android:textColor="@color/black"
+        android:textSize="16dp"
+        tools:text="Test test"
+        android:textColor="@color/line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_below="@+id/card"/>
 
-</RelativeLayout>
+</LinearLayout>

@@ -119,7 +119,7 @@
                     android:background="@android:color/transparent"
                     android:hint="Name*"
                     android:layout_width="match_parent"
-                    android:inputType="textPersonName"
+                    android:inputType="text"
                     android:tag="Name"
                     android:textColorHint="@color/line"
                     android:layout_height="wrap_content"/>
@@ -573,6 +573,7 @@
         </LinearLayout>
 
     </ScrollView>
+
     <FrameLayout
         android:translationZ="16dp"
         android:layout_alignParentTop="true"
@@ -580,9 +581,5 @@
         android:id="@+id/setLocationPickerFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-
-
-
 
 </RelativeLayout>

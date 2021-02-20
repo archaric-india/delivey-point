@@ -30,13 +30,12 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="75dp"
+            android:layout_centerInParent="true"
             android:orientation="vertical">
 
             <LinearLayout
 
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -140,16 +139,17 @@
         app:layout_constraintTop_toBottomOf="@+id/detailLayoutAtTop" />
 
     <androidx.cardview.widget.CardView
+
         android:visibility="visible"
         android:id="@+id/drawerLayout"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="320dp"
         app:cardCornerRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/mapViewFragment">
 
         <ImageView
             android:layout_width="match_parent"
@@ -430,6 +430,7 @@
                             android:padding="20dp">
 
                             <LinearLayout
+
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
@@ -437,6 +438,10 @@
                                 android:orientation="vertical">
 
                                 <ImageView
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:foreground="@drawable/flat_ripple_transparent"
+                                    android:id="@+id/callToDriver"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_marginTop="30dp"
@@ -483,6 +488,7 @@
                                         app:cardCornerRadius="5dp">
 
                                         <ImageView
+                                            android:id="@+id/driverImage"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:scaleType="centerCrop" />
@@ -498,6 +504,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/driverName"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Kuwait."
@@ -532,13 +539,14 @@
                                                 android:transformPivotY="5dp" />
 
                                             <TextView
+                                                android:id="@+id/ratingCount"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_alignParentTop="true"
                                                 android:layout_marginStart="5dp"
                                                 android:layout_marginTop="5dp"
                                                 android:layout_toEndOf="@+id/ratingBarOfDriver"
-                                                android:text="(523)" />
+                                                android:text="" />
 
 
                                         </RelativeLayout>

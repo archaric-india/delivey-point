@@ -3,6 +3,7 @@ package com.archaric.deliverypoint.LoginSignUp;
 import com.archaric.deliverypoint.location;
 
 public class UserModel {
+    private String email;
     private String id;
     private String name;
     private String phone;
@@ -12,8 +13,16 @@ public class UserModel {
     private String token;
     private boolean english;
     private String profile;
-    private double wallet;
+    private float wallet;
     private String zone;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getId() {
         return id;
@@ -87,11 +96,11 @@ public class UserModel {
         this.profile = profile;
     }
 
-    public double getWallet() {
+    public float getWallet() {
         return wallet;
     }
 
-    public void setWallet(double wallet) {
+    public void setWallet(float wallet) {
         this.wallet = wallet;
     }
 
@@ -106,7 +115,8 @@ public class UserModel {
     @Override
     public String toString() {
         return "UserModel{" +
-                "id='" + id + '\'' +
+                "email='" + email + '\'' +
+                ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +

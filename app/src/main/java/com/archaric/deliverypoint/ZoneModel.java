@@ -1,6 +1,7 @@
 package com.archaric.deliverypoint;
 
 public class ZoneModel {
+
     String zone, subzone;
 
     public String getZone() {
@@ -17,5 +18,13 @@ public class ZoneModel {
 
     public void setSubzone(String subzone) {
         this.subzone = subzone;
+    }
+
+    @Override
+    public String toString() {
+        return "ZoneModel{" +
+                "zone='" + zone + '\'' +
+                ", subzone='" + subzone + '\'' +
+                '}';
     }
 }

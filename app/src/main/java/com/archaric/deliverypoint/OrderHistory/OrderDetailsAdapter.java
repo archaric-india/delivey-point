@@ -44,6 +44,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
         if (detailsModels.get(position).getStatus().equals("Delivered")) {
             holder.expTime.setVisibility(View.GONE);
         }else if(detailsModels.get(position).getStatus().equals("Out For Delivery")) {
+            holder.expTime.setVisibility(View.VISIBLE);
             holder.expTime.setText("Delivery in "+detailsModels.get(position).getExptime()+" minutes with live tracking");
         }else {
             holder.expTime.setVisibility(View.GONE);

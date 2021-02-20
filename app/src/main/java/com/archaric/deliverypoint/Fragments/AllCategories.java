@@ -87,8 +87,7 @@ public class AllCategories extends Fragment {
             @Override
             public void onResponse(Call<List<AllCategoriesModel>> call, Response<List<AllCategoriesModel>> response) {
                 ArrayList<AllCategoriesModel> arrayList = ( ArrayList<AllCategoriesModel>) response.body();
-
-                if (arrayList != null && arrayList.size() != 0) {
+                if (arrayList != null) {
                     shimmer_view_container.stopShimmer();
                     shimmer_view_container.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);

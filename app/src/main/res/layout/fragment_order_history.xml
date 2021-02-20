@@ -133,6 +133,7 @@
         android:id="@+id/orderHistoryRec"/>
 
     <LinearLayout
+        tools:visibility="visible"
         android:id="@+id/noDataFoundLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -147,10 +148,10 @@
 
         <ImageView
             android:backgroundTint="@color/line"
-            android:background="@drawable/ic_outline_shopping_cart_24"
+            android:background="@drawable/ic_cart1"
             android:layout_gravity="center"
-            android:layout_width="150dp"
-            android:layout_height="150dp"/>
+            android:layout_width="130dp"
+            android:layout_height="130dp"/>
 
         <TextView
             android:layout_marginTop="10dp"

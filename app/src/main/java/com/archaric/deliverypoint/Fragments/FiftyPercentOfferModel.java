@@ -1,5 +1,7 @@
 package com.archaric.deliverypoint.Fragments;
 
+import com.archaric.deliverypoint.location;
+
 import java.io.Serializable;
 
 public class FiftyPercentOfferModel implements Serializable {
@@ -7,6 +9,15 @@ public class FiftyPercentOfferModel implements Serializable {
    float rating, preptime;
    double delivery_fee;
    int offer;
+   com.archaric.deliverypoint.location location;
+
+    public com.archaric.deliverypoint.location getLocation() {
+        return location;
+    }
+
+    public void setLocation(com.archaric.deliverypoint.location location) {
+        this.location = location;
+    }
 
     public double getDelivery_fee() {
         return delivery_fee;
@@ -156,7 +167,9 @@ public class FiftyPercentOfferModel implements Serializable {
                 ", zone='" + zone + '\'' +
                 ", rating=" + rating +
                 ", preptime=" + preptime +
+                ", delivery_fee=" + delivery_fee +
                 ", offer=" + offer +
+                ", location=" + location +
                 '}';
     }
 }

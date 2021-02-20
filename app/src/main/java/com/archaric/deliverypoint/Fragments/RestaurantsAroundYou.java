@@ -33,7 +33,7 @@ import static com.archaric.deliverypoint.Mapset.ZONE_ID;
 
 public class RestaurantsAroundYou extends Fragment {
 
-    ResAroundYouANDNewlyAdapter resAroundYouANDNewlyAdapter;
+   ResAroundYouANDNewlyAdapter resAroundYouANDNewlyAdapter;
     RecyclerView recyclerView;
     ShimmerFrameLayout shimmerFrameLayout;
 

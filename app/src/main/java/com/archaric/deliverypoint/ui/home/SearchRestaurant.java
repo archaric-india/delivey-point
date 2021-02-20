@@ -40,7 +40,7 @@ public class SearchRestaurant extends Fragment implements SearchRestaurantData {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_restaurant, container, false);
-        //fromHomePageTV = view.findViewById(R.id.fromHomePageTV);
+        fromHomePageTV = view.findViewById(R.id.fromHomePageTV);
         // Inflate the layout for this fragment
         return view;
     }

@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:id="@+id/empty"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.SearchRestaurant">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_alignParentTop="true"
+            android:id="@+id/newTv"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="567 Open Restaurants Found" />
+
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/fromHomePageTV"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hdch dbcc" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_gravity="center"
@@ -24,17 +47,17 @@
 
 
         <ImageView
-            android:backgroundTint="@color/gray1"
+            android:backgroundTint="@color/line"
             android:background="@drawable/ic_baseline_search_24"
             android:layout_gravity="center"
-            android:layout_width="64dp"
-            android:layout_height="64dp"/>
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
 
         <TextView
             android:textColor="@color/black"
-            android:fontFamily="@font/sf_semibold"
+            android:textStyle="bold"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -43,7 +66,7 @@
 
         <TextView
             android:layout_marginTop="10dp"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -62,10 +85,8 @@
             android:layout_marginTop="50dp"
             android:textSize="18sp"
             android:gravity="center"
-            android:fontFamily="@font/sf_semibold"
             android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_marginHorizontal="10dp"
+            android:layout_width="275dp"
             android:layout_height="wrap_content"
             android:text="Back to Home"/>
 
@@ -76,4 +97,4 @@
 
 
 
-</FrameLayout>
+</androidx.cardview.widget.CardView>

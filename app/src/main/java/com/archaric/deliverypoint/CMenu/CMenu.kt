@@ -2,6 +2,7 @@ package com.archaric.deliverypoint.CMenu
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.archaric.deliverypoint.R
 
 
-class CMenu(val context: Context, val root: LinearLayout) {
+class CMenu(val context: Context, val root: LinearLayout, resources: Resources) {
 
     var items: List<CMenuItem> = arrayListOf(
         CMenuItem(R.string.menu_home, R.drawable.ic_baseline_home_24, false, null),
@@ -31,7 +32,7 @@ class CMenu(val context: Context, val root: LinearLayout) {
     init {
 
         items.forEach{
-            it.draw(context, root)
+            it.draw(context, root, resources)
         }
     }
 
@@ -59,10 +60,10 @@ class CMenuItem{
         this.items = items
     }
 
-    fun draw(context: Context, root: LinearLayout){
+    fun draw(context: Context, root: LinearLayout, resources: Resources){
         view = LayoutInflater.from(context).inflate(R.layout.item_cmenu, root as ViewGroup, false) as TextView
 
-        view.setText(context.resources.getString(title))
+        view.setText(resources.getString(title))
 
         root.addView(view)
 
@@ -87,15 +88,6 @@ class CMenuItem{
 
                 it.view.visibility = View.GONE
                 root.addView(it.view)
-                it.view.setOnClickListener{ v ->
-                    if(!it.expandle){
-                        CURRENT = it.title;
-                        LocalBroadcastManager.getInstance(context).sendBroadcast(Intent("MENU"))
-
-                    } else {
-
-                    }
-                }
             }
         }
 

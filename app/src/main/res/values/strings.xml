@@ -47,6 +47,4 @@
     <string name="credit_points">Credit Points</string>
     <string name="hello">Hello,</string>
     <string name="hit_a_search_bar_to_create_an_order">Hit a search bar to create an order</string>
-    <string name="add_a_new_address">Add a new address</string>
-    <string name="search_with_the_restaurant">Search with the restaurant</string>
 </resources>

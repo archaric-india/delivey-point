@@ -93,8 +93,8 @@ public class MoreInfoIndividualRes extends AppCompatActivity {
                 categoryOfIndividualRes= findViewById(R.id.categoryOfIndividualRes);
         reviewTime_MoreInfo= findViewById(R.id.reviewTime_MoreInfo);
                 priceFiftyPerOff= findViewById(R.id.priceFiftyPerOff);
-        rBar_MoreInfo = findViewById(R.id.rBar_MoreInfo);
-                totalNumOfReviewRes_MoreInfo= findViewById(R.id.totalNumOfReviewRes_MoreInfo);
+        rBar_MoreInfo = findViewById(R.id.ratingBarOfRes);
+                totalNumOfReviewRes_MoreInfo= findViewById(R.id.totalNumOfReviewRes);
         address_MoreInfo= findViewById(R.id.address_MoreInfo);
                 overAllRating_MoreInfo= findViewById(R.id.overAllRating_MoreInfo);
         overAllValue_MoreInfo= findViewById(R.id.overAllValue_MoreInfo);

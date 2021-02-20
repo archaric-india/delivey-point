@@ -42,11 +42,12 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrdersAdapter.ViewHo
 
         holder.orderStatus.setText(detailsModels.get(position).getStatus());
         holder.orderTotal.setText("KD "+String.valueOf(detailsModels.get(position).getTotal()));
-        // holder.expTime.setText("Delivery in "+detailsModels.get(position).getExptime()+" minutes with live tracking");
+       // holder.expTime.setText("Delivery in "+detailsModels.get(position).getExptime()+" minutes with live tracking");
 
         if (detailsModels.get(position).getStatus().equals("Delivered")) {
             holder.expTime.setVisibility(View.GONE);
-        }else if(detailsModels.get(position).getStatus().equals("Out For Delivery")) {
+        }else if(detailsModels.get(position).getStatus().toString().trim().equals("Out For Delivery")) {
+            holder.expTime.setVisibility(View.VISIBLE);
             holder.expTime.setText("Delivery in "+detailsModels.get(position).getExptime()+" minutes with live tracking");
         }else {
             holder.expTime.setVisibility(View.GONE);

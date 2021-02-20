@@ -1,5 +1,8 @@
 package com.archaric.deliverypoint.OrderHistory;
 
+import com.archaric.deliverypoint.ZoneModel;
+import com.archaric.deliverypoint.location;
+
 public class DeliveryModel {
 
     String id ;
@@ -7,6 +10,33 @@ public class DeliveryModel {
     String phone;
     com.archaric.deliverypoint.location location;
     String password;
+    float rating;
+    String ratinglen, profile;
+
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public String getRatinglen() {
+        return ratinglen;
+    }
+
+    public void setRatinglen(String ratinglen) {
+        this.ratinglen = ratinglen;
+    }
 
     public String getId() {
         return id;

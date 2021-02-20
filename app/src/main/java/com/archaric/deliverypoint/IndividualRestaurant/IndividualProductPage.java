@@ -64,11 +64,11 @@ public class IndividualProductPage extends AppCompatActivity implements View.OnC
 
     Items item;
 
+    String resId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Window w = getWindow();
-//        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_individual_product_page);
         init();
         Items data = (Items) getIntent().getSerializableExtra(ITEM_ID_DATA);
@@ -110,32 +110,49 @@ public class IndividualProductPage extends AppCompatActivity implements View.OnC
                 }
 
 
+
+               // System.out.println(data.getBid());
                 item = new Items(data.getId(),
                         data.getName(),
                         data.getImage(),
                         totalPriceToCart,variations,
                         addons,
                         hereSpecialRequest,
-                        resultCart.getText().toString());
+                        resultCart.getText().toString(),data.getBid());
 
                 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                SharedPreferences.Editor editor = sharedPrefs.edit();
                 Gson gson = new Gson();
 
                 String json = sharedPrefs.getString("TAG", "[]");
+                SharedPreferences.Editor editor = sharedPrefs.edit();
                 Type type = new TypeToken<List<Items>>() {}.getType();
                 itemsArrayList = gson.fromJson(json, type);
 
-                itemsArrayList.add(item);
-                json = gson.toJson(itemsArrayList);
-                editor.putString("TAG", json);
-                System.out.println(json);
-                editor.commit();
+                 checkCartData();
+
+                if (resId.equals(data.getBid())){
+                    itemsArrayList.add(item);
+                    json = gson.toJson(itemsArrayList);
+                    editor.putString("TAG", json);
+                    System.out.println(json);
+                    editor.commit();
+                }else {
+                    itemsArrayList.clear();
+                    System.out.println("Cart Cleared!!! \n Restaurant Changed!");
+                    itemsArrayList.add(item);
+                    json = gson.toJson(itemsArrayList);
+                    editor.putString("TAG", json);
+                    System.out.println(json);
+                    editor.commit();
+                }
+
 
                 Toast.makeText(IndividualProductPage.this, "Added to Cart!", Toast.LENGTH_SHORT).show();
 
             }
         });
+
+
 
 
 
@@ -276,5 +293,27 @@ public class IndividualProductPage extends AppCompatActivity implements View.OnC
     @Override
     public void sendAddonsKey(List<String> keys) {
         addons.addAll(keys);
+    }
+
+    private void checkCartData(){
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Gson gson = new Gson();
+        String json = sharedPrefs.getString("TAG", "[]");
+        Type type = new TypeToken<List<Items>>() {}.getType();
+        ArrayList<Items> arrayList = gson.fromJson(json, type);
+        if(!arrayList.isEmpty()){
+            System.out.println("Working....");
+            try {
+                resId = arrayList.get(0).getBid();
+                System.out.println(arrayList.get(0).getBid());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+
+        }else {
+            resId = "null";
+        }
+
     }
 }

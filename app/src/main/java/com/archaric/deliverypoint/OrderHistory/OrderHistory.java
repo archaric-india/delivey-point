@@ -115,23 +115,23 @@ public class OrderHistory extends Fragment {
                 @Override
                 public void onResponse(Call<List<OrdersModel>> call, Response<List<OrdersModel>> response) {
 
-                    ArrayList<OrdersModel> orderDetailsModels = (ArrayList<OrdersModel>) response.body();
-                    if (response.isSuccessful()){
-                        if (orderDetailsModels.size() != 0) {
-                            shimmerFrameLayout.stopShimmer();
-                            shimmerFrameLayout.setVisibility(View.GONE);
-                            noDataFoundLayout.setVisibility(View.GONE);
-                            orderHistoryRec.setVisibility(View.VISIBLE);
-                            orderDetailsAdapter.setDetailsModels(orderDetailsModels);
-                            orderHistoryRec.setAdapter(orderDetailsAdapter);
-                            orderDetailsAdapter.notifyDataSetChanged();
-                        }else {
-                            noDataFoundLayout.setVisibility(View.VISIBLE);
-                            shimmerFrameLayout.stopShimmer();
-                            shimmerFrameLayout.setVisibility(View.GONE);
-                            orderHistoryRec.setVisibility(View.GONE);
-                        }
-                    }
+                            ArrayList<OrdersModel> orderDetailsModels = (ArrayList<OrdersModel>) response.body();
+                            if (response.isSuccessful()){
+                                if (orderDetailsModels.size() != 0) {
+                                    shimmerFrameLayout.stopShimmer();
+                                    shimmerFrameLayout.setVisibility(View.GONE);
+                                    noDataFoundLayout.setVisibility(View.GONE);
+                                    orderHistoryRec.setVisibility(View.VISIBLE);
+                                    orderDetailsAdapter.setDetailsModels(orderDetailsModels);
+                                    orderHistoryRec.setAdapter(orderDetailsAdapter);
+                                    orderDetailsAdapter.notifyDataSetChanged();
+                                }else {
+                                    noDataFoundLayout.setVisibility(View.VISIBLE);
+                                    shimmerFrameLayout.stopShimmer();
+                                    shimmerFrameLayout.setVisibility(View.GONE);
+                                    orderHistoryRec.setVisibility(View.GONE);
+                                }
+                            }
                 }
 
                 @Override

@@ -27,7 +27,7 @@ import static com.archaric.deliverypoint.Fragments.FiftyPercentOffersAdapter.RES
 
 public class RestaurantsAroundYouLargeAdapter extends RecyclerView.Adapter<RestaurantsAroundYouLargeAdapter.ViewHolder> {
 
-    ArrayList<FiftyPercentOfferModel> models = new ArrayList<>();
+    ArrayList<FiftyPercentOfferModel> models;
 
     public void setModels(ArrayList<FiftyPercentOfferModel> models) {
         this.models = models;

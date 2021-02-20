@@ -120,10 +120,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             }
         });
 
-
-
-
-
         holder.removeFromCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,18 +136,24 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
 
                 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(holder.removeFromCart.getContext());
-
-
                 SharedPreferences.Editor editor = sharedPrefs.edit();
                 Gson gson2 = new Gson();
-
                 String json2 = sharedPrefs.getString("TAG", "[]");
                 Type type2 = new TypeToken<List<Items>>() {}.getType();
-                //itemsArrayList2.addAll(arrayList);
-                json2 = gson2.toJson(itemsArrayList);
+
+                if (db == 0){
+                    ArrayList<Items> newArray = new ArrayList<>();
+                    json2 = gson2.toJson(newArray);
+                }else {
+                    json2 = gson2.toJson(itemsArrayList);
+                }
                 editor.putString("TAG", json2);
                 System.out.println(json2);
                 editor.commit();
+
+
+                //itemsArrayList2.addAll(arrayList);
+
 
 
 

@@ -108,5 +108,10 @@ public class SpecialOffers extends Fragment {
                 }
             });
         }
+
+
+
+
+
     }
 }

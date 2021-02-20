@@ -1,6 +1,8 @@
 package com.archaric.deliverypoint.Fragments;
 
-public class AddressModel {
+import java.io.Serializable;
+
+public class AddressModel implements Serializable {
 
     String cusName;
     String buildingNo, locality, city, country, pincode, wholeAddress;

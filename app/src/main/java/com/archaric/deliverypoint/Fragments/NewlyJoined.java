@@ -23,6 +23,8 @@ import com.archaric.deliverypoint.R;
 import com.archaric.deliverypoint.Utils;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,8 @@ public class NewlyJoined extends Fragment {
     public NewlyJoined() {
         // Required empty public constructor
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,10 +84,10 @@ public class NewlyJoined extends Fragment {
         if (!TextUtils.isEmpty(zoneId)) {
             endPoint.getNewlyJoined(zoneId).enqueue(new Callback<List<FiftyPercentOfferModel>>() {
                 @Override
-                public void onResponse(Call<List<FiftyPercentOfferModel>> call, Response<List<FiftyPercentOfferModel>> response) {
+                public void onResponse(@NotNull Call<List<FiftyPercentOfferModel>> call, @NotNull Response<List<FiftyPercentOfferModel>> response) {
                     ArrayList<FiftyPercentOfferModel> offerModels = (ArrayList<FiftyPercentOfferModel>) response.body();
-                    if (offerModels != null) {
-                        //System.out.println(offerModels.get(0).getCategory());
+                    if (offerModels != null && response.body() != null) {
+                        System.out.println(response.body());
                         shimmerFrameLayout.stopShimmer();
                         shimmerFrameLayout.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
