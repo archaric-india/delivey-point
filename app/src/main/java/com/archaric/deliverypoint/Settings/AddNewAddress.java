@@ -21,7 +21,6 @@ import com.archaric.deliverypoint.Fragments.LocationPicker;
 import com.archaric.deliverypoint.IndividualRestaurant.IndividualResCategoryModel;
 import com.archaric.deliverypoint.IndividualRestaurant.Items;
 import com.archaric.deliverypoint.OrderHistory.OrdersModel;
-import com.archaric.deliverypoint.OrderHistory.ServerResponse;
 import com.archaric.deliverypoint.R;
 import com.archaric.deliverypoint.Utils;
 import com.google.gson.Gson;
@@ -85,60 +84,6 @@ public class AddNewAddress extends AppCompatActivity implements ShareLocationAdd
         if (ordersModel != null) {
 
             plotData(ordersModel);
-            deliveryTo = ordersModel.getDeliveryto().toString();
-            if (deliveryTo.equals("House")){
-
-                houseLayout.setBackground(getResources().getDrawable(R.drawable.bg_tv_darkline));
-                houseOkIV.setVisibility(View.VISIBLE);
-                houseIv.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
-                houseTv.setTextColor(getResources().getColor(R.color.black));
-
-                apartmentLayout.setBackground(getResources().getDrawable(R.drawable.bg_tv_review));
-                apartmentOkIV.setVisibility(View.GONE);
-                apartmentIv.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.line)));
-                apartmentTv.setTextColor(getResources().getColor(R.color.line));
-
-                officeLayout.setBackground(getResources().getDrawable(R.drawable.bg_tv_review));
-                officeOkIV.setVisibility(View.GONE);
-                officeIv.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.line)));
-                officeTv.setTextColor(getResources().getColor(R.color.line));
-
-            }else  if(deliveryTo.equals("Apartment")){
-
-                deliveryTo = "Apartment";
-                apartmentLayout.setBackground(getResources().getDrawable(R.drawable.bg_tv_darkline));
-                apartmentOkIV.setVisibility(View.VISIBLE);
-                apartmentIv.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
-                apartmentTv.setTextColor(getResources().getColor(R.color.black));
-
-                houseLayout.setBackground(getResources().getDrawable(R.drawable.bg_tv_review));
-                houseOkIV.setVisibility(View.GONE);
-                houseIv.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.line)));
-                houseTv.setTextColor(getResources().getColor(R.color.line));
-
-                officeLayout.setBackground(getResources().getDrawable(R.drawable.bg_tv_review));
-                officeOkIV.setVisibility(View.GONE);
-                officeIv.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.line)));
-                officeTv.setTextColor(getResources().getColor(R.color.line));
-
-            }else {
-
-                officeLayout.setBackground(getResources().getDrawable(R.drawable.bg_tv_darkline));
-                officeOkIV.setVisibility(View.VISIBLE);
-                officeIv.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
-                officeTv.setTextColor(getResources().getColor(R.color.black));
-
-                houseLayout.setBackground(getResources().getDrawable(R.drawable.bg_tv_review));
-                houseOkIV.setVisibility(View.GONE);
-                houseIv.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.line)));
-                houseTv.setTextColor(getResources().getColor(R.color.line));
-
-                apartmentLayout.setBackground(getResources().getDrawable(R.drawable.bg_tv_review));
-                apartmentOkIV.setVisibility(View.GONE);
-                apartmentIv.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.line)));
-                apartmentTv.setTextColor(getResources().getColor(R.color.line));
-            }
-
 
         }
 
@@ -211,14 +156,8 @@ public class AddNewAddress extends AppCompatActivity implements ShareLocationAdd
         saveAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!TextUtils.isEmpty(title)) {
-                    if (title.equals("Add a New Address")) {
-                        validateData();
-                    }else {
-                       addEditAddress(ordersModel);
-                    }
 
-                }
+                    validateData();
 
 
             }
@@ -399,7 +338,7 @@ public class AddNewAddress extends AppCompatActivity implements ShareLocationAdd
 //            ordersModel.setDate(String.valueOf(today));
 //            ordersModel.setDatef(strDate);
             ordersModel.setAvenue(av);
-            ordersModel.setBuildingName(buildingName.getText().toString());
+            ordersModel.setBuildingName(buildingName.getTag().toString());
             ordersModel.setStreetName(streetName.getText().toString());
             ordersModel.setLaneLineNO(LLNum);
             ordersModel.setUid(Utils.userData(this).getId());
@@ -422,122 +361,8 @@ public class AddNewAddress extends AppCompatActivity implements ShareLocationAdd
             System.out.println(json);
 
             addAddressWork(json);
-
-
         }
 
-
-    }
-
-    private void addEditAddress(OrdersModel ordersModel){
-
-        String cusName =   customer_name.getText().toString();
-        String mobNum =   mobileNumber.getText().toString();
-        String LLNum =   laneLineNumber.getText().toString();
-        String CCity =   cusCity.getText().toString();
-        String Bno =   blockNo.getText().toString();
-        String av =   avenue.getText().toString();
-        String Rno =   roomNo.getText().toString();
-        String jad =   jaddha.getText().toString();
-        String addressT =   addressTitle.getText().toString();
-        String sName =   streetName.getText().toString();
-        String bName =   buildingName.getText().toString();
-        String bNum =   buildingNum.getText().toString();
-        String addDis =   addDirect.getText().toString();
-        String sno = streetNum.getText().toString();
-
-        if (TextUtils.isEmpty(cusName)) {
-            Utils.toast(this,"Enter Your Name");
-            return;
-        }
-        if (TextUtils.isEmpty(mobNum)) {
-            Utils.toast(this,"Enter Your Mobile Number");
-            return;
-        }
-
-        if (TextUtils.isEmpty(CCity)) {
-            Utils.toast(this,"Enter Your City");
-            return;
-        }
-        if (TextUtils.isEmpty(Bno)) {
-            Utils.toast(this,"Enter Your Block Number");
-            return;
-        }
-        if (TextUtils.isEmpty(Rno)) {
-            Utils.toast(this,"Enter Your Room Number");
-            return;
-        }
-        if (TextUtils.isEmpty(sno)) {
-            Utils.toast(this,"Enter Your Street No");
-            return;
-        }
-        if (TextUtils.isEmpty(sName)) {
-            Utils.toast(this,"Enter Your Street Name");
-            return;
-        }
-        if (TextUtils.isEmpty(bName)) {
-            Utils.toast(this,"Enter Your Building Name");
-            return;
-        }
-        if (TextUtils.isEmpty(bNum)) {
-            Utils.toast(this,"Enter Your Building Number");
-            return;
-        }
-
-        if (wholeAddress.getVisibility() == View.VISIBLE){
-            wholeAddress.getText().toString();
-        }
-
-        if (TextUtils.isEmpty(LLNum)){
-            LLNum = "null";
-        }
-
-        if (TextUtils.isEmpty(av)){
-            av = "null";
-        }
-
-        if (TextUtils.isEmpty(jad)){
-            jad = "null";
-        }
-
-        if (TextUtils.isEmpty(addressT)){
-            addressT = "null";
-        }
-
-        if (TextUtils.isEmpty(addDis)){
-            addDis = "null";
-        }
-
-
-       // ordersModel.setId("");
-        ordersModel.setType("");
-        ordersModel.setDeliveryto(deliveryTo);
-        ordersModel.setBlockno(blockNo.getText().toString());
-        ordersModel.setStreetno(streetNum.getText().toString());
-        ordersModel.setBuildingno(buildingNum.getText().toString());
-        ordersModel.setRoomno(roomNo.getText().toString());
-        ordersModel.setJedda(jad);
-        ordersModel.setArea(cusCity.getText().toString());
-        ordersModel.setPhoneno(mobileNumber.getText().toString());
-        ordersModel.setDescription(addDis);
-        ordersModel.setAvenue(av);
-        ordersModel.setBuildingName(buildingName.getText().toString());
-        ordersModel.setStreetName(streetName.getText().toString());
-        ordersModel.setLaneLineNO(LLNum);
-        ordersModel.setUid(Utils.userData(this).getId());
-        ordersModel.setCustomername(customer_name.getText().toString());
-        ordersModel.setAddressTitle(addressT);
-        if (wholeAddress.getVisibility() == View.VISIBLE) {
-            ordersModel.setAddress(wholeAddress.getText().toString());
-        }else {
-            ordersModel.setAddress("null");
-        }
-
-        Gson gson = new Gson();
-        String json = gson.toJson(ordersModel);
-        System.out.println(json);
-
-        editAddressWork(json);
 
     }
 
@@ -563,30 +388,6 @@ public class AddNewAddress extends AppCompatActivity implements ShareLocationAdd
                 Utils.toast(AddNewAddress.this,"Address Added!");
                 finish();
                 startActivity(getIntent());
-            }
-        });
-    }
-
-    private void editAddressWork(String json) {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://delivery-8a843.appspot.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        EndPoint endPoint = retrofit.create(EndPoint.class);
-        endPoint.editUserAddress(json).enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                if (response.isSuccessful()) {
-                    Utils.toast(AddNewAddress.this,"Address Updated!");
-                    finish();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
-                Utils.toast(AddNewAddress.this,"Address Updated!");
             }
         });
     }

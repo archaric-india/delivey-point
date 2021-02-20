@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     style="@style/Theme.AppCompat.StatusBar_TransParent"
     android:fitsSystemWindows="true"
+    android:layout_marginBottom="40dp"
     tools:context=".OrderHistory.MyOrders">
 
 

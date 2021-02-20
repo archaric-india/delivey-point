@@ -10,25 +10,20 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.archaric.deliverypoint.R;
-import com.archaric.deliverypoint.Utils;
-import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class Settings extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String NOTIFICATION_CHECK = "NotificationCheck";
     LinearLayout backToHomePageOnTitle, settingsContent;
     FrameLayout settingsChanger;
     RelativeLayout myAccountLayout, myAddressesLayout, changePasswordLayout, changeLanguageLayout, myNotifications, privacyPolicy, termsAndConditions;
     Intent intent;
     TextView currentLang;
-    SwitchMaterial switchNotification;
     public static final String SETTINGS_CONTENT_KEY = "SettingsContentKey";
 
     @Override
@@ -49,31 +44,13 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             currentLang.setText("Arabic");
         }
 
-        String notify = Utils.getStoredData(Settings.this,NOTIFICATION_CHECK);
-        if(notify.equals("Enable")){
-            switchNotification.setChecked(true);
-        }if (notify.equals("Disable")){
-            switchNotification.setChecked(false);
-        }
 
 
-        switchNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    Utils.storeData(Settings.this,"Enable",NOTIFICATION_CHECK);
-                    Utils.toast(Settings.this,"Notification turned On!");
-                }else {
-                    Utils.storeData(Settings.this,"Disable",NOTIFICATION_CHECK);
-                    Utils.toast(Settings.this,"Notification turned Off!");
-                }
-            }
-        });
 
 
     }
 
     private void init(){
-        switchNotification  = findViewById(R.id.switchNotification);
         backToHomePageOnTitle = findViewById(R.id.backToHomePageOnTitle);
         settingsContent = findViewById(R.id.settingsContent);
         settingsChanger = findViewById(R.id.settingsChanger);

@@ -3,13 +3,9 @@ package com.archaric.deliverypoint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.preference.PreferenceManager;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -21,7 +17,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Locale;
 
 import static com.archaric.deliverypoint.LoginSignUp.SignUp.USER_MODEL;
 
@@ -102,28 +97,14 @@ public class Utils {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    public void setLanguage(Context context){
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String json = sharedPrefs.getString("Lang", "en");
-        System.out.println(json + "HERE");
-        if (json.equals("en")){
-            setAppLocale("en", context);
-        }else {
-            setAppLocale("ar", context);
+    public static void showKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = activity.getCurrentFocus();
+        if (view == null) {
+            view = new View(activity);
         }
-    }
-
-    public void setAppLocale(String localeKey, Context context){
-        Resources resources = context.getResources();
-        DisplayMetrics dm = resources.getDisplayMetrics();
-        Configuration conf= resources.getConfiguration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
-            conf.setLocale(new Locale(localeKey.toLowerCase()));
-        }else {
-            conf.locale = new Locale(localeKey.toLowerCase());
-        }
-        resources.updateConfiguration(conf, dm);
-
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        //imm.showSoftInputFromInputMethod(view.getWindowToken(), 0);
     }
 
 }

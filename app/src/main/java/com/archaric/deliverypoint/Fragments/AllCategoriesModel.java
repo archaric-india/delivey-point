@@ -2,16 +2,8 @@ package com.archaric.deliverypoint.Fragments;
 
 public class AllCategoriesModel {
 
-    String name, image, zoneId;
+    String name, image;
     FiftyPercentOfferModel restuarants;
-
-    public String getZoneId() {
-        return zoneId;
-    }
-
-    public void setZoneId(String zoneId) {
-        this.zoneId = zoneId;
-    }
 
     public String getCategory() {
         return name;

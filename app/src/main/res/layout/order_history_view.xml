@@ -104,15 +104,15 @@
 
 
 
-            <TextView
-                android:id="@+id/expTime"
-                android:layout_marginTop="5dp"
-                android:drawableTint="@color/Blue"
-                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-                android:textColor="@color/Blue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Delivery in 10 minutes with live tracking"/>
+        <TextView
+            android:id="@+id/expTime"
+            android:layout_marginTop="5dp"
+            android:drawableTint="@color/Blue"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+            android:textColor="@color/Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery in 10 minutes with live tracking"/>
 
 
 

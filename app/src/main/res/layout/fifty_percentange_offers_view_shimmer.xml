@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     android:id="@+id/fiftyPerOffersCardView"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_margin="10dp"
     android:elevation="10dp"
     app:cardCornerRadius="10dp"

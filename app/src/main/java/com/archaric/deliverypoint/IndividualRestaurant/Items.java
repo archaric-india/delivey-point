@@ -41,7 +41,7 @@ public class Items implements Serializable {
         this.addons = addons;
     }
 
-    public Items(String id, String name, String image, float price, String variationKey, List<String> addonsKeys,String specialRequest,String quantityCount, String bid) {
+    public Items(String id, String name, String image, float price, String variationKey, List<String> addonsKeys,String specialRequest,String quantityCount) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -50,7 +50,6 @@ public class Items implements Serializable {
         this.addonsKeys = addonsKeys;
         this.specialRequest = specialRequest;
         this.quantityCount = quantityCount;
-        this.bid = bid;
     }
 
     @Override

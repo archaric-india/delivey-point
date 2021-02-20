@@ -36,30 +36,10 @@
         tools:layout="@layout/fragment_my_cart" />
 
     <fragment
-        android:id="@+id/nav_place_order"
-        android:name="com.archaric.deliverypoint.OrderHistory.PlaceOrder"
+        android:id="@+id/nav_search"
+        android:name="com.archaric.deliverypoint.Search.SearchFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_place_order" />
-
-    <fragment
-        android:id="@+id/nav_fifty_off_large"
-        android:name="com.archaric.deliverypoint.Fragments.FiftyPerOffLarge"
-        android:label="@string/offers"
-        tools:layout="@layout/fragment_fifty_per_off_large" />
-
-    <fragment
-        android:id="@+id/nav_res_around_you_large"
-        android:name="com.archaric.deliverypoint.Fragments.RestaurantsAroundYouLarge"
-        android:label="@string/offers"
-        tools:layout="@layout/fragment_restaurants_around_you_large" />
-
-    <fragment
-        android:id="@+id/nav_newly_joined_large"
-        android:name="com.archaric.deliverypoint.Fragments.NewlyJoinedLarge"
-        android:label="@string/offers"
-        tools:layout="@layout/fragment_newly_joined_large" />
-
-
+        tools:layout="@layout/fragment_search_sep" />
 
 
 </navigation>

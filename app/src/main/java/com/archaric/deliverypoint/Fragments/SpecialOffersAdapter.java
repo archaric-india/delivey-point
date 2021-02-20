@@ -59,16 +59,14 @@ public class SpecialOffersAdapter extends RecyclerView.Adapter<SpecialOffersAdap
             @Override
             public void onClick(View v) {
 
-                if (modelArrayList.get(position).getRestuarants() != null){
-                    FiftyPercentOfferModel percentOfferModelNew =
-                            new FiftyPercentOfferModel(modelArrayList.get(position).getRestuarants().getId(),modelArrayList.get(position).getRestuarants().getName()
-                                    ,modelArrayList.get(position).getRestuarants().getProfile(),modelArrayList.get(position).getRestuarants().getCategory(),modelArrayList.get(position).getRestuarants().getRatinglenght()
-                                    ,modelArrayList.get(position).getRestuarants().getTimevalue(),modelArrayList.get(position).getRestuarants().getLogo(),modelArrayList.get(position).getRestuarants().getRating()
-                                    ,modelArrayList.get(position).getRestuarants().getOffer());
-                    Intent intent = new Intent(holder.specialOffersImageView.getContext(), IndividualRestaurant.class);
-                    intent.putExtra(RES_DATA, percentOfferModelNew);
-                    holder.specialOffersImageView.getContext().startActivity(intent);
-                }
+                FiftyPercentOfferModel percentOfferModelNew =
+                        new FiftyPercentOfferModel(modelArrayList.get(position).getRestuarants().getId(),modelArrayList.get(position).getRestuarants().getName()
+                                ,modelArrayList.get(position).getRestuarants().getProfile(),modelArrayList.get(position).getRestuarants().getCategory(),modelArrayList.get(position).getRestuarants().getRatinglenght()
+                                ,modelArrayList.get(position).getRestuarants().getTimevalue(),modelArrayList.get(position).getRestuarants().getLogo(),modelArrayList.get(position).getRestuarants().getRating()
+                                ,modelArrayList.get(position).getRestuarants().getOffer());
+                Intent intent = new Intent(holder.specialOffersImageView.getContext(), IndividualRestaurant.class);
+                intent.putExtra(RES_DATA, percentOfferModelNew);
+                holder.specialOffersImageView.getContext().startActivity(intent);
             }
         });
 

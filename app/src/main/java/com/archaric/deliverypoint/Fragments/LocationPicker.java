@@ -19,12 +19,11 @@ import androidx.fragment.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,8 +32,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.archaric.deliverypoint.EndPoint;
+import com.archaric.deliverypoint.LoginSignUp.Login;
 import com.archaric.deliverypoint.MainActivity;
+import com.archaric.deliverypoint.OrderHistory.ServerResponse;
 import com.archaric.deliverypoint.R;
+import com.archaric.deliverypoint.SendCartItemsTotal;
+import com.archaric.deliverypoint.Settings.AddressDataInterface;
 import com.archaric.deliverypoint.Settings.ShareLocationAddress;
 import com.archaric.deliverypoint.Utils;
 import com.archaric.deliverypoint.ZoneModel;
@@ -48,23 +51,17 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.AutocompletePrediction;
-import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
-import com.google.android.libraries.places.api.model.TypeFilter;
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse;
-import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -74,7 +71,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.archaric.deliverypoint.Mapset.REQUEST_CODE_PERMISSIONS;
+import static android.app.Activity.RESULT_OK;
 import static com.archaric.deliverypoint.Mapset.ZONE_ID;
 
 
@@ -83,7 +80,6 @@ public class LocationPicker extends Fragment implements GoogleApiClient.Connecti
         LocationListener,
         OnMapReadyCallback, com.google.android.gms.location.LocationListener {
 
-    public static final String ADDRESS_DATA_TO_MAIN_PAGE = "AddressToMainPage" ;
     MapView mapView;
     GoogleMap mMap;
     Geocoder geo;
@@ -98,14 +94,10 @@ public class LocationPicker extends Fragment implements GoogleApiClient.Connecti
     LocationRequest mLocationRequest;
     ArrayList<AddressModel> addressModels;
     ShareLocationAddress shareLocationAddress;
-    String s = "", zoneId;
-    AutoCompleteTextView searchBar;
+    String s = "";
+    EditText searchBar;
     ImageView close_search;
-    ArrayAdapter<Address> addressArrayAdapter;
-    ArrayList<Address> addressArrayList = new ArrayList<>();
-
-    private PlacesClient placesClient;
-    private List<AutocompletePrediction> predictionList;
+    String zoneId = "";
 
    public LocationPicker(ShareLocationAddress shareLocationAddress){
         this.shareLocationAddress = shareLocationAddress;
@@ -147,14 +139,41 @@ public class LocationPicker extends Fragment implements GoogleApiClient.Connecti
         parentRelative = view.findViewById(R.id.parentRelative);
         addressOfTheLocation = view.findViewById(R.id.addressOfTheLocation);
         MapsInitializer.initialize(getActivity());
-        Places.initialize(getActivity(),"AIzaSyBHBcHtcwhD1r-nE_BbnsJdpMIle6HtmVU");
-
-
 
         // Inflate the layout for this fragment
         return view;
     }
+    private void getZoneData(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://delivery-8a843.appspot.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
+        EndPoint endPoint = retrofit.create(EndPoint.class);
+        endPoint.getCustomerZone(13.119843,80.269329).enqueue(new Callback<ZoneModel>() {
+            @Override
+            public void onResponse(@NotNull Call<ZoneModel> call, @NotNull Response<ZoneModel> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getZone() != null)
+                        zoneId = response.body().getZone();
+                    try {
+                        System.out.println(zoneId + " ZoneId");
+                        Utils.storeData(getActivity(),zoneId,ZONE_ID);
+                        System.out.println(Utils.getStoredData(getActivity(),ZONE_ID));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ZoneModel> call, Throwable t) {
+
+            }
+        });
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -162,20 +181,7 @@ public class LocationPicker extends Fragment implements GoogleApiClient.Connecti
         mapView.onResume();
         mapView.getMapAsync(this);
         checkLocationPermission();
-
-
-
         getZoneData();
-
-        boolean background = false;
-//        if (background) {
-//             //   handleLocationUpdates();
-//            } else {
-//                ActivityCompat.requestPermissions(getActivity(),
-//                        new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, REQUEST_CODE_PERMISSIONS);
-//                return;
-//            }
-
         close_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,9 +208,6 @@ public class LocationPicker extends Fragment implements GoogleApiClient.Connecti
             }
         });
 
-        placesClient = Places.createClient(getActivity());
-        final AutocompleteSessionToken autocompleteSessionToken = AutocompleteSessionToken.newInstance();
-
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -216,15 +219,11 @@ public class LocationPicker extends Fragment implements GoogleApiClient.Connecti
 
                 if (!TextUtils.isEmpty(s.toString())) {
                     close_search.setVisibility(View.VISIBLE);
-                    searchLocation(s.toString());
                 }
-
 
                 if (TextUtils.isEmpty(s.toString())) {
                     close_search.setVisibility(View.GONE);
                 }
-
-
             }
 
             @Override
@@ -236,16 +235,23 @@ public class LocationPicker extends Fragment implements GoogleApiClient.Connecti
         getMyCurrentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // System.out.println(addressModels.get(0).getCity());
-                if (s.equals("GotoMain")){
+                try{
+                    System.out.println(addressModels.get(0).getCity());
+
+
+                    if (s.equals("GotoMain")){
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }else if(s.equals("")){
+                        getActivity().getSupportFragmentManager().beginTransaction().
+                                remove(getActivity().getSupportFragmentManager().findFragmentById(R.id.setLocationPickerFragment)).commit();
+                        shareLocationAddress.locationDetails(addressModels);
+                    }
+                } catch (Exception e){
                     Intent intent = new Intent(getActivity(), MainActivity.class);
-                    intent.putExtra(ADDRESS_DATA_TO_MAIN_PAGE,addressModels);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                }else if(s.equals("")){
-                    getActivity().getSupportFragmentManager().beginTransaction().
-                            remove(getActivity().getSupportFragmentManager().findFragmentById(R.id.setLocationPickerFragment)).commit();
-                    shareLocationAddress.locationDetails(addressModels);
                 }
             }
         });
@@ -268,7 +274,7 @@ public class LocationPicker extends Fragment implements GoogleApiClient.Connecti
                             == PackageManager.PERMISSION_GRANTED) {
 
                         buildGoogleApiClient();
-                     //   mMap.setMyLocationEnabled(true);
+                        mMap.setMyLocationEnabled(true);
 
 
                     } else {
@@ -277,7 +283,7 @@ public class LocationPicker extends Fragment implements GoogleApiClient.Connecti
                     }
                 } else {
                         buildGoogleApiClient();
-                      //  mMap.setMyLocationEnabled(true);
+                        mMap.setMyLocationEnabled(true);
                 }
 
 
@@ -296,61 +302,65 @@ public class LocationPicker extends Fragment implements GoogleApiClient.Connecti
                         location1.addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 Location currentLocation = (Location) task.getResult();
-
-                                try {
+                                if(currentLocation != null){
                                     LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                                    if (geo == null)
-                                        geo = new Geocoder(getActivity(), Locale.getDefault());
-                                    List<Address> address = geo.getFromLocation(latLng.latitude, latLng.longitude, 1);
-                                    if (address.size() > 0) {
-                                        if (marker != null){
-                                            marker.remove();
+
+                                    try {
+                                        if (geo == null)
+                                            geo = new Geocoder(getActivity(), Locale.getDefault());
+                                        List<Address> address = geo.getFromLocation(latLng.latitude, latLng.longitude, 1);
+                                        if (address.size() > 0) {
+                                            if (marker != null){
+                                                marker.remove();
+                                            }
+                                            marker =
+                                                    mMap.addMarker(new MarkerOptions().position(latLng).title("You are here"));
+                                            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+
+                                            addressOfTheLocation.setText(
+                                                    address.get(0).getFeatureName()
+                                                            + ", " + address.get(0).getSubLocality()
+                                                            + ", " + address.get(0).getLocality()
+                                                            // + "" + address.get(0).getAddressLine(0)
+                                                            + ", "  + address.get(0).getAdminArea()
+                                                            + ", " + address.get(0).getPostalCode());
+                                            addressModels = new ArrayList<>();
+                                            addressModels.add( new AddressModel(address.get(0).getFeatureName(),address.get(0).getSubLocality(),address.get(0).getLocality()
+                                                    ,address.get(0).getAdminArea(),address.get(0).getPostalCode(),address.get(0).getAddressLine(0),latLng.latitude,latLng.longitude));
+
+                                            imgMyLocation.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    if (marker != null){
+                                                        marker.remove();
+                                                    }
+                                                    marker =
+                                                            mMap.addMarker(new MarkerOptions().position(latLng).title("You are here"));
+                                                    mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                                                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+
+                                                    addressOfTheLocation.setText(
+                                                            address.get(0).getFeatureName()
+                                                                    + ", " + address.get(0).getSubLocality()
+                                                                    + ", " + address.get(0).getLocality()
+                                                                    // + "" + address.get(0).getAddressLine(0)
+                                                                    + ", "  + address.get(0).getAdminArea()
+                                                                    + ", " + address.get(0).getPostalCode());
+
+                                                    addressModels = new ArrayList<>();
+                                                    addressModels.add( new AddressModel(address.get(0).getFeatureName(),address.get(0).getSubLocality(),address.get(0).getLocality()
+                                                            ,address.get(0).getAdminArea(),address.get(0).getPostalCode(),address.get(0).getAddressLine(0),latLng.latitude,latLng.longitude));
+                                                }
+                                            });
                                         }
-                                        marker =
-                                                mMap.addMarker(new MarkerOptions().position(latLng).title("You are here"));
-                                        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
-
-                                         addressOfTheLocation.setText(
-                                                   address.get(0).getFeatureName()
-                                                + ", " + address.get(0).getSubLocality()
-                                                           + ", " + address.get(0).getLocality()
-                                                          // + "" + address.get(0).getAddressLine(0)
-                                                           + ", "  + address.get(0).getAdminArea()
-                                                           + ", " + address.get(0).getPostalCode());
-                                        addressModels = new ArrayList<>();
-                                        addressModels.add( new AddressModel(address.get(0).getFeatureName(),address.get(0).getSubLocality(),address.get(0).getLocality()
-                                         ,address.get(0).getAdminArea(),address.get(0).getPostalCode(),address.get(0).getAddressLine(0),latLng.latitude,latLng.longitude));
-
-                                         imgMyLocation.setOnClickListener(new View.OnClickListener() {
-                                             @Override
-                                             public void onClick(View v) {
-                                                 if (marker != null){
-                                                     marker.remove();
-                                                 }
-                                                 marker =
-                                                         mMap.addMarker(new MarkerOptions().position(latLng).title("You are here"));
-                                                 mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                                                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
-
-                                                 addressOfTheLocation.setText(
-                                                         address.get(0).getFeatureName()
-                                                                 + ", " + address.get(0).getSubLocality()
-                                                                 + ", " + address.get(0).getLocality()
-                                                                 // + "" + address.get(0).getAddressLine(0)
-                                                                 + ", "  + address.get(0).getAdminArea()
-                                                                 + ", " + address.get(0).getPostalCode());
-
-                                                 addressModels = new ArrayList<>();
-                                                 addressModels.add( new AddressModel(address.get(0).getFeatureName(),address.get(0).getSubLocality(),address.get(0).getLocality()
-                                                         ,address.get(0).getAdminArea(),address.get(0).getPostalCode(),address.get(0).getAddressLine(0),latLng.latitude,latLng.longitude));
-                                             }
-                                         });
+                                    } catch (IOException ex) {
+                                        if (ex != null)
+                                            Toast.makeText(getActivity(), "Error:" + ex.getMessage().toString(), Toast.LENGTH_LONG).show();
                                     }
-                                } catch (IOException ex) {
-                                    if (ex != null)
-                                        Toast.makeText(getActivity(), "Error:" + ex.getMessage().toString(), Toast.LENGTH_LONG).show();
                                 }
+
+
                             } else {
                                 Toast.makeText(getActivity(), "Unable to get current location", Toast.LENGTH_SHORT).show();
                             }
@@ -531,85 +541,4 @@ public class LocationPicker extends Fragment implements GoogleApiClient.Connecti
     public void onMapReady(GoogleMap googleMap) {
 
     }
-
-    private void getZoneData(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://delivery-8a843.appspot.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-
-        EndPoint endPoint = retrofit.create(EndPoint.class);
-        endPoint.getCustomerZone(13.119897,80.265283).enqueue(new Callback<ZoneModel>() {
-            @Override
-            public void onResponse(Call<ZoneModel> call, Response<ZoneModel> response) {
-
-                if (response.isSuccessful()) {
-                    ZoneModel zoneModel = response.body();
-                    if (zoneModel != null)
-                        zoneId = zoneModel.getZone();
-                    try {
-                        System.out.println(zoneId + " ZoneId " + zoneModel.getSubzone().toString() + " SubZone");
-                        Utils.storeData(getActivity(),zoneId,ZONE_ID);
-                        System.out.println(Utils.getStoredData(getActivity(),ZONE_ID));
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ZoneModel> call, Throwable t) {
-
-            }
-        });
-    }
-
-    public void searchLocation(String s) {
-        String location = s.toString();
-        List<Address> addressList = null;
-
-        if (location != null || !location.equals("")) {
-            Geocoder geocoder = new Geocoder(getActivity());
-            try {
-                addressList = geocoder.getFromLocationName(location, 10);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (addressList.size() != 0){
-                System.out.println(addressList);
-                addressArrayList.addAll(addressList);
-                addressArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_expandable_list_item_1,addressArrayList);
-                searchBar.setAdapter(addressArrayAdapter);
-
-                if (marker != null){
-                    marker.remove();
-                }
-                Address address = addressList.get(0);
-
-
-                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                marker = mMap.addMarker(new MarkerOptions().position(latLng).title(location));
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                addressOfTheLocation.setText(
-                        address.getFeatureName()
-                                + ", " + address.getSubLocality()
-                                + ", " + address.getLocality()
-                                // + "" + address.get(0).getAddressLine(0)
-                                + ", "  + address.getAdminArea()
-                                + ", " + address.getPostalCode());
-                addressModels = new ArrayList<>();
-                addressModels.add( new AddressModel(address.getFeatureName(),address.getSubLocality(),address.getLocality()
-                        ,address.getAdminArea(),address.getPostalCode(),address.getAddressLine(0),latLng.latitude,latLng.longitude));
-
-              //  Toast.makeText(getActivity(),address.getLatitude()+" "+address.getLongitude(),Toast.LENGTH_LONG).show();
-            }
-
-        }
-    }
-
-
 }

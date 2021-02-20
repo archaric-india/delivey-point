@@ -53,7 +53,7 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     public void setAppLocale(String localeKey){
-        Resources resources = getBaseContext().getResources();
+        Resources resources =getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
         Configuration conf= resources.getConfiguration();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){

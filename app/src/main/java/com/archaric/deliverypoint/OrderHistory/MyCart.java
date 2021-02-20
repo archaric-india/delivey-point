@@ -210,7 +210,7 @@ public class MyCart extends Fragment implements SendCartItemsTotal, SendAddressP
             @Override
             public void onClick(View v) {
                 addressChanger.setVisibility(View.VISIBLE);
-               // placeOrder.setVisibility(View.INVISIBLE);
+                // placeOrder.setVisibility(View.INVISIBLE);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                transaction.replace(R.id.addressChanger,new ChangeAddressAtCart());
 //                transaction.commit();
@@ -229,41 +229,41 @@ public class MyCart extends Fragment implements SendCartItemsTotal, SendAddressP
 
 
                 if (Utils.userData(getContext()) != null) {
-                        if (addressLayout.getVisibility() == View.VISIBLE){
-                            if (!Utils.userData(getContext()).getId().isEmpty()) {
-                                System.out.println(Utils.userData(getContext()).getId());
-                                Calendar cal = Calendar.getInstance();
-                                long today = cal.getTime().getTime();
-                                Format f = new SimpleDateFormat("dd/MM/yy");
-                                String strDate = f.format(new Date());
-                                System.out.println(today + strDate);
+                    if (addressLayout.getVisibility() == View.VISIBLE){
+                        if (!Utils.userData(getContext()).getId().isEmpty()) {
+                            System.out.println(Utils.userData(getContext()).getId());
+                            Calendar cal = Calendar.getInstance();
+                            long today = cal.getTime().getTime();
+                            Format f = new SimpleDateFormat("dd/MM/yy");
+                            String strDate = f.format(new Date());
+                            System.out.println(today + strDate);
 
-                                if (ordersModel != null){
-                                    ordersModel.setDate(String.valueOf(today));
-                                    ordersModel.setDatef(strDate);
-                                    ordersModel.setSubtotal(cartTotal);
-
-
+                            if (ordersModel != null){
+                                ordersModel.setDate(String.valueOf(today));
+                                ordersModel.setDatef(strDate);
+                                ordersModel.setSubtotal(cartTotal);
 
 
 
-                                    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                                    Gson gson = new Gson();
-                                    String json = sharedPrefs.getString("TAG", "[]");
-                                    Type type = new TypeToken<List<Items>>() {}.getType();
-                                    ArrayList<Items> arrayList = gson.fromJson(json, type);
 
-                                    System.out.println(arrayList);
 
-                                    if (arrayList != null){
-                                        ordersModel.setItems(arrayList);
-                                        String resId = arrayList.get(0).getBid();
-                                        setDataOfDeliveryFee(resId);
-                                        ordersModel.setRid(resId);
-                                    }
+                                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                                Gson gson = new Gson();
+                                String json = sharedPrefs.getString("TAG", "[]");
+                                Type type = new TypeToken<List<Items>>() {}.getType();
+                                ArrayList<Items> arrayList = gson.fromJson(json, type);
+
+                                System.out.println(arrayList);
+
+                                if (arrayList != null){
+                                    ordersModel.setItems(arrayList);
+                                    String resId = arrayList.get(0).getBid();
+                                    setDataOfDeliveryFee(resId);
+                                    ordersModel.setRid(resId);
                                 }
                             }
-                        }else {Utils.toast(getActivity(),"Add Address details in settings");}
+                        }
+                    }else {Utils.toast(getActivity(),"Add Address details in settings");}
                 }else {
                     startActivity(new Intent(getActivity(), Login.class));
                 }
@@ -276,32 +276,32 @@ public class MyCart extends Fragment implements SendCartItemsTotal, SendAddressP
             }
         });
 
-       try {
-           SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-           Gson gson = new Gson();
-           String json = sharedPrefs.getString("TAG", "[]");
-           Type type = new TypeToken<List<Items>>() {}.getType();
-           ArrayList<Items> arrayList = gson.fromJson(json, type);
+        try {
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            Gson gson = new Gson();
+            String json = sharedPrefs.getString("TAG", "[]");
+            Type type = new TypeToken<List<Items>>() {}.getType();
+            ArrayList<Items> arrayList = gson.fromJson(json, type);
 
 
-        if (Utils.isNetworkOnline(getActivity())) {
-            cartCount.setText("("+arrayList.size()+")");
+            if (Utils.isNetworkOnline(getActivity())) {
+                cartCount.setText("("+arrayList.size()+")");
+            }
+
+            if (arrayList.size() == 0) {
+                cartCount.setText("");
+                noDataFoundLayout.setVisibility(View.VISIBLE);
+            }
+
+
+            cartAdapter.setItemsArrayList(arrayList);
+            cartListRec.setAdapter(cartAdapter);
+            cartAdapter.notifyDataSetChanged();
+
+        }catch (Exception e){
+
+            e.printStackTrace();
         }
-
-        if (arrayList.size() == 0) {
-            cartCount.setText("");
-            noDataFoundLayout.setVisibility(View.VISIBLE);
-        }
-
-
-        cartAdapter.setItemsArrayList(arrayList);
-        cartListRec.setAdapter(cartAdapter);
-        cartAdapter.notifyDataSetChanged();
-
-       }catch (Exception e){
-
-           e.printStackTrace();
-       }
 
     }
 

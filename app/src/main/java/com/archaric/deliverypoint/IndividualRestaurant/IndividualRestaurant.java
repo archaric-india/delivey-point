@@ -7,23 +7,25 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.archaric.deliverypoint.ChangeDrawerInterface;
 import com.archaric.deliverypoint.EndPoint;
 import com.archaric.deliverypoint.Fragments.FiftyPercentOfferModel;
-import com.archaric.deliverypoint.MainActivity;
 import com.archaric.deliverypoint.R;
 import com.archaric.deliverypoint.SendItemData;
 import com.bumptech.glide.Glide;
@@ -32,6 +34,8 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +47,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.archaric.deliverypoint.Fragments.FiftyPercentOffersAdapter.RES_DATA;
+import static java.security.AccessController.getContext;
 
 public class IndividualRestaurant extends AppCompatActivity implements SendItemData {
 
@@ -60,9 +65,6 @@ public class IndividualRestaurant extends AppCompatActivity implements SendItemD
     Search fragment;
     ShimmerFrameLayout shimmerFrameLayout,shimmer_layout2, shimmer_layout3;
     RelativeLayout gotoCart;
-    ChangeDrawerInterface changeDrawerInterface;
-
-
 
     public static final String RES_ID_KEY = "resIdKey";
 
@@ -128,10 +130,10 @@ public class IndividualRestaurant extends AppCompatActivity implements SendItemD
                     reviewView.setVisibility(View.GONE);
                     reviewTV.setTextColor(getResources().getColor(R.color.black));
                 }
-//                finish();
-//                overridePendingTransition(0, 0);
-//                startActivity(getIntent());
-//                overridePendingTransition(0, 0);
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
 
                 if (!data.toString().isEmpty()) {
                     getData(data);
@@ -172,10 +174,6 @@ public class IndividualRestaurant extends AppCompatActivity implements SendItemD
         gotoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(IndividualRestaurant.this, MainActivity.class);
-                intent.putExtra("setCart", "toCartFragment");
-                startActivity(intent);
 
             }
         });
@@ -271,7 +269,7 @@ public class IndividualRestaurant extends AppCompatActivity implements SendItemD
             @Override
             public void onResponse(Call<List<IndividualResCategoryModel>> call, Response<List<IndividualResCategoryModel>> response) {
                 ArrayList<IndividualResCategoryModel> resCategoryModels = (ArrayList<IndividualResCategoryModel>) response.body();
-                if (resCategoryModels != null) {
+                if (resCategoryModels.size() != 0) {
 
                     shimmerFrameLayout.stopShimmer();
                     shimmerFrameLayout.setVisibility(View.GONE);
@@ -345,10 +343,9 @@ public class IndividualRestaurant extends AppCompatActivity implements SendItemD
     public void searchBoxShow(View view) {
         Bundle bundle = new Bundle();
         if (id != null) {
-            FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frameLayout,new Search(id));
-            transaction.commit();
-        }
+            Search s  = new Search(id);
 
+            s.show(getSupportFragmentManager(), null);
+        }
     }
 }

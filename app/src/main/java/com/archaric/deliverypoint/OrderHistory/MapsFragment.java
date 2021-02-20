@@ -87,6 +87,7 @@ public class MapsFragment extends Fragment implements GoogleApiClient.Connection
 
     Marker markerDeliveryBoy;
 
+
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         @Override
@@ -570,7 +571,7 @@ public class MapsFragment extends Fragment implements GoogleApiClient.Connection
 
 //        Location prevLoc = ... ;
 //        Location newLoc = ... ;
-       // float bearing = prevLoc.bearingTo(newLoc) ;
+        // float bearing = prevLoc.bearingTo(newLoc) ;
 
 
 //            //Log.e("INCOMING", polyline?.points!!.toString())

@@ -13,4 +13,8 @@
     <color name="light_text">#494949</color>
     <color name="lightBlack">#4D4D4D</color>
 
+    <color name="gray1">#86868B</color>
+    <color name="gray2">#EEEEEE</color>
+    <color name="gray3">#F6F6F6</color>
+
 </resources>

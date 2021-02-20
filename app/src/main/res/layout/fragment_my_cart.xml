@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     tools:context=".OrderHistory.OrderHistory">
 
     <LinearLayout
@@ -40,9 +40,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""/>
-
-
-
         </LinearLayout>
 
 
@@ -57,7 +54,6 @@
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_below="@+id/topLayout"
         android:layout_above="@+id/totalLayout"
         android:scrollbars="none"
@@ -286,7 +282,7 @@
                 tools:listitem="@layout/cart_view"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:id="@+id/cartListRec"/>
 
@@ -298,6 +294,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/totalLayout"
+        android:translationY="-54dp"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -348,6 +345,7 @@
 
     </androidx.cardview.widget.CardView>
 
+
     <FrameLayout
         android:visibility="gone"
         android:translationZ="16dp"
@@ -358,8 +356,8 @@
 
     <androidx.cardview.widget.CardView
         android:visibility="gone"
+        tools:visibility="visible"
         android:id="@+id/noDataFoundLayout"
-        android:layout_below="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -367,16 +365,23 @@
             android:layout_gravity="center"
             android:layout_centerInParent="true"
             android:visibility="visible"
+            tools:visibility="gone"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
+            <ImageView
+                android:layout_width="64dp"
+                app:tint="@color/gray1"
+                android:layout_height="64dp"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/ic_cart1"/>
 
 
             <TextView
-                android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textColor="@color/lightBlack"
+                android:textSize="15sp"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"

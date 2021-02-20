@@ -19,7 +19,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order is Out For Delivery \n Not able to cancel"
+                android:text="Order is PickedUp \n Not able to cancel"
                 android:textSize="20sp"
                 android:textAllCaps="false"
                 android:gravity="center"
@@ -34,8 +34,6 @@
                 android:background="@drawable/ic_sad_1"/>
 
             <TextView
-                android:id="@+id/closeWindow"
-                android:fontFamily="@font/sf_semibold"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:focusable="true"

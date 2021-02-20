@@ -5,7 +5,6 @@ public class Coupon {
     private String code;
     private int offer;
 
-
     public String getId() {
         return id;
     }

@@ -44,8 +44,8 @@ public class MyOrders extends AppCompatActivity  {
         if (!TextUtils.isEmpty(keyToFragment)){
             switch (keyToFragment){
                 case "OrderTracking":
-                        transaction5.replace(R.id.orderTracking,new OrderTracking());
-                        transaction5.commit();
+                    transaction5.replace(R.id.orderTracking,new OrderTracking());
+                    transaction5.commit();
                     break;
                 case "WriteAReview":
                     transaction5.replace(R.id.orderTracking,new WriteAReview());

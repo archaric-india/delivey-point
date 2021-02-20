@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.archaric.deliverypoint.IndividualRestaurant.Items;
@@ -39,9 +38,6 @@ public class ChangeLanguage extends Fragment {
     LinearLayout backToHomePageOnTitle;
     RadioButton englishLang, arabicLang;
     RadioGroup langRadioGroup;
-    TextView save;
-
-    boolean english = true;
 
     public ChangeLanguage() {
         // Required empty public constructor
@@ -60,7 +56,6 @@ public class ChangeLanguage extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_change_language, container, false);
 
-        save  = view.findViewById(R.id.save);
         backToHomePageOnTitle = view.findViewById(R.id.backToHomePageOnTitle);
         englishLang = view.findViewById(R.id.englishLang);
         arabicLang = view.findViewById(R.id.arabicLang);
@@ -88,26 +83,6 @@ public class ChangeLanguage extends Fragment {
         }
 
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (english){
-                    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    SharedPreferences.Editor editor = sharedPrefs.edit();
-                    editor.putString("Lang", "en");
-                    editor.commit();
-                    setAppLocale("en");
-                    restartActivity();
-                }else {
-                    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    SharedPreferences.Editor editor = sharedPrefs.edit();
-                    editor.putString("Lang", "ar");
-                    editor.commit();
-                    setAppLocale("ar");
-                    restartActivity();
-                }
-            }
-        });
 
 
 
@@ -120,9 +95,19 @@ public class ChangeLanguage extends Fragment {
                 RadioButton rb=(RadioButton)view.findViewById(checkedId);
                 Toast.makeText(getActivity(), rb.getText(), Toast.LENGTH_SHORT).show();
                 if (checkedId == R.id.englishLang){
-                       english = true;
+                        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                        SharedPreferences.Editor editor = sharedPrefs.edit();
+                        editor.putString("Lang", "en");
+                        editor.commit();
+                    setAppLocale("en");
+                    restartActivity();
                 }else if (checkedId == R.id.arabicLang){
-                       english = false;
+                    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    SharedPreferences.Editor editor = sharedPrefs.edit();
+                    editor.putString("Lang", "ar");
+                    editor.commit();
+                    setAppLocale("ar");
+                    restartActivity();
                 }
 
             }

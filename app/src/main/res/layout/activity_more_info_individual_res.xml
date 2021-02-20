@@ -728,7 +728,7 @@
                         android:gravity="start"
                         android:textStyle="bold"
                         android:id="@+id/resName_MoreInfo"
-                        android:layout_width="wrap_content"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="10dp"
@@ -797,53 +797,49 @@
             </RelativeLayout>
 
 
-
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/ratingBarLay"
-                android:layout_below="@+id/first"
-                android:layout_marginStart="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/first"
+                android:layout_marginStart="15dp"
                 android:orientation="horizontal">
 
                 <RatingBar
-                    android:layout_gravity="center"
-                    android:translationX="0dp"
-                    android:layout_marginEnd="-120dp"
-                    android:theme="@style/RatingBar"
-                    android:id="@+id/ratingBarOfRes"
+                    android:id="@+id/rBar_MoreInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="-120dp"
                     android:layout_marginBottom="0dp"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:scaleX=".5"
                     android:scaleY=".5"
+                    android:theme="@style/RatingBar"
                     android:transformPivotX="0dp"
                     android:transformPivotY="15sp" />
 
                 <TextView
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/totalNumOfReviewRes"
-                    android:layout_gravity="top"
-                    android:textSize="15sp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="40dp"
+                    android:id="@+id/resCat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="(24)"/>
-            </LinearLayout>
+                    android:text=""
+                    android:textSize="12sp" />
 
+                <TextView
+                    android:id="@+id/totalNumOfReviewRes_MoreInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@+id/rBar_MoreInfo"
+                    android:text="(0)"
+                    android:textSize="15sp" />
 
-            <TextView
-                android:layout_marginTop="-15dp"
-                android:layout_marginStart="15dp"
-                tools:text="fhfhfhfhfhffhfhfhfhfhfh"
-                android:layout_below="@+id/ratingBarLay"
-                android:id="@+id/resCat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp" />
+            </RelativeLayout>
 
 
             <LinearLayout

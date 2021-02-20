@@ -7,6 +7,11 @@
     app:layoutDescription="@xml/activity_individual_restaurant_scene2">
 
 
+
+
+
+
+
     <ImageView
         android:id="@+id/restaurants_Iv"
         android:layout_width="match_parent"
@@ -109,7 +114,7 @@
                     android:id="@+id/resName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="12dp"
                     android:text="Cake Lake"
                     android:textColor="@color/black"
                     android:textSize="15sp"
@@ -120,45 +125,46 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/resName"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="5dp"
                     android:text="Category" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/ratingBarLay"
-                    android:layout_below="@+id/categoryOfIndividualRes"
-                    android:layout_marginStart="15dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/categoryOfIndividualRes"
+                    android:layout_marginStart="12dp"
                     android:orientation="horizontal">
 
                     <RatingBar
-                        android:layout_gravity="center"
-                        android:translationX="0dp"
-                        android:layout_marginEnd="-120dp"
-                        android:theme="@style/RatingBar"
                         android:id="@+id/ratingBarOfRes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="-120dp"
                         android:layout_marginBottom="0dp"
                         android:isIndicator="true"
                         android:numStars="5"
+                        android:rating="3.5"
                         android:scaleX=".5"
                         android:scaleY=".5"
+                        android:theme="@style/RatingBar"
                         android:transformPivotX="0dp"
-                        android:transformPivotY="15sp" />
+                        android:transformPivotY="10dp" />
 
                     <TextView
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginTop="10dp"
                         android:id="@+id/totalNumOfReviewRes"
-                        android:layout_gravity="top"
-                        android:textSize="15sp"
-                        android:layout_marginStart="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="(24)"/>
-                </LinearLayout>
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/ratingBarOfRes"
+                        android:text="(0)"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
@@ -166,7 +172,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="16dp">
+                android:layout_marginEnd="12dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -349,7 +355,6 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:overScrollMode="never"
                 android:visibility="gone"
                 android:id="@+id/categoriesRecyclerView"
                 android:layout_width="match_parent"
@@ -377,7 +382,6 @@
             </com.facebook.shimmer.ShimmerFrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:overScrollMode="never"
                 android:id="@+id/categoriesContentRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
